@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React</title>
+</head>
+<body>
+    <div id="app">
+        <!--App renders here -->
+    </div>
+    <script src="react/build/react.js"></script>
+    <script src="react/build/react-dom.js"></script>
+    <script>
+        //my apps code
+        var Component=React.createClass({
+            render: function () {
+                return React.DOM.h1(null,
+                        "My name is "+this.props.firstName+' '+this.props.middleName+' '+this.props.lastName+ ' and I live on '+this.props.address);
+            },
+            propTypes: {
+                firstName: React.PropTypes.string.isRequired,
+                lastName: React.PropTypes.string.isRequired,
+                middleName: React.PropTypes.string.isRequired,
+                address: React.PropTypes.string.isRequired,
+            },
+            getDefaultProps: function () {
+                return {
+                    middleName: '',
+                    address: 'n/a'
+                }
+            }
+        })
+        var ComponentFactory=React.createFactory(Component);
+        ReactDOM.render(
+                React.createElement(Component,{
+                    firstName: 'Bob',lastName: 'James',
+                }),
+                document.getElementById("app")
+        );
+    </script>
+</body>
+</html>
